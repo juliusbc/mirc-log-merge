@@ -44,4 +44,8 @@ def union(list1, list2, tb=None, i=None, j=None):
 			return union(list1, list2, tb, i-1, j) + [list1[i]]
 
 @click.command()
-def cli()
+@click.option('--output', default='-', type=click.File('wb'))
+@click.argument('file1', type=click.File('rb'))
+@click.argument('file2', type=click.File('rb'))
+def cli(file1, file2, output):
+	click.echo(union([line for line in file1], [line for line in file2])
